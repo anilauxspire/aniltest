@@ -4,10 +4,11 @@ public class AcccountProgressBarController {
          
         Account c = [SELECT Id, Name, Description, Site,Phone FROM Account WHERE Id = :customerProfileId LIMIT 1];
         system.debug( 'accountC' + c);
-         system.debug('Description' + c.Description);
+         system.debug('Descriptions' + c.Description);
         if (c == null) {
             return 0;
-            //test vs code
+            //test 2
+            //test vs code new
         }
 
         Schema.FieldSet fieldSet = SObjectType.Account.FieldSets.FSL__Emergency_Account_Fields;
