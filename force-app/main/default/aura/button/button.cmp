@@ -1,0 +1,7 @@
+<aura:component implements="lightning:availableForFlowScreens,force:appHostable" access="global">
+    <!-- Optional attribute to accept button label -->
+    <aura:attribute name="buttonLabel" type="String" default="File Upload" />
+
+    <!-- Button with SLDS styles and an onclick event handler -->
+    <lightning:button label="{!v.buttonLabel}" onclick="{!c.handleClick}" class="slds-button slds-button_brand" />
+</aura:component>

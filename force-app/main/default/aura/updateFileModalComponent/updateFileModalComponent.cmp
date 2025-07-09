@@ -1,0 +1,54 @@
+<aura:component>
+    <aura:attribute name="isOpen" type="Boolean" default="false"/>
+    <aura:attribute name="uploadedFiles" type="List"/>
+    <aura:attribute name="showFileUploadProgress" type="Boolean" default="false"/>
+    <aura:attribute name="recordId" type="Id"/>
+    <aura:attribute name="parentComponent" type="Aura.Component"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <!-- Main Modal Container -->
+    <div class="{!'slds-modal' + (v.isOpen ? ' slds-fade-in-open' : '')}">
+        <div class="slds-modal__container">
+            <!-- Modal Header -->
+            <header class="slds-modal__header">
+                <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick="{!c.closeModal}">
+                    <lightning:icon iconName="utility:close" alternativeText="Close"/>
+                    <span class="slds-assistive-text">Close</span>
+                </button>
+                <h2 id="modal-heading-01" class="slds-text-heading_medium">Upload PLD File</h2>
+            </header>
+            
+            <!-- Modal Body -->
+            <div class="slds-modal__content slds-p-around_medium">
+                <!-- File Upload Component -->
+                <lightning:fileUpload label="Upload PLD File"
+                                      multiple="false"
+                                      accept=".pdf, .doc, .docx, .txt"
+                                      recordId="{!v.recordId}"
+                                      onuploadfinished="{!c.handleUploadFinished}"/>
+                
+                <!-- Display uploaded files -->
+                <aura:if isTrue="{!not(empty(v.uploadedFiles))}">
+                    <ul>
+                        <aura:iteration items="{!v.uploadedFiles}" var="file">
+                            <li>{!file.name}</li>
+                        </aura:iteration>
+                    </ul>
+                </aura:if>
+            </div>
+            
+            <!-- Modal Footer -->
+            <footer class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" onclick="{!c.closeModal}">Cancel</button>
+                <div class="slds-m-left_auto">
+                    <button class="slds-button slds-button_brand" onclick="{!c.finishUpload}">Finish</button>
+                </div>
+            </footer>
+        </div>
+    </div>
+    
+    <!-- Backdrop -->
+    <div class="{!'slds-backdrop' + (v.isOpen ? ' slds-backdrop_open' : '')}"></div>
+</aura:component>

@@ -1,0 +1,8 @@
+.THIS .slds-modal__footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.THIS .slds-m-left_auto {
+    margin-left: auto;
+}

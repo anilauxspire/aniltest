@@ -1,0 +1,24 @@
+<aura:component controller="AcccountProgressBarController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,force:lightningQuickAction,lightning:availableForFlowScreens" access="global" >
+  
+    <aura:attribute name="progress" type="Integer"/>
+    <aura:attribute name="widthStyle" type="Integer"/>
+        <aura:attribute name="shippingProfileId" type = "String" />
+        <aura:attribute name="percentage" type="Integer"/>
+
+
+
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+    <div class="slds-grid slds-grid_align-spread slds-p-bottom_x-small" id="progress-bar-label-id-5">
+        <span>Field Progress Bar</span>
+        <span aria-hidden="true">
+            <strong>{!v.percentage}% Complete</strong>
+        </span>
+    </div>
+    <div class="slds-progress-bar slds-progress-bar_large" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{!v.percentage}" aria-labelledby="progress-bar-label-id-5" role="progressbar">
+        <span class="slds-progress-bar__value" style="{!v.widthStyle}">
+            <span class="slds-assistive-text" id="progress-bar-label-id-5">percentage: {!v.percentage}%</span>
+        </span>
+    </div>
+</aura:component>
